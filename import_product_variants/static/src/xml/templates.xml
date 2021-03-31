@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="ImportProductVariants.purchase_button">
+        <button
+            class="btn btn-secondary o_button_upload_variants"
+            type="action">Upload</button>
+    </t>
+</templates>

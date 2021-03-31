@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="purchase_order_import_variants_form" model="ir.ui.view">
+        <field name="name">purchase_order_import_variants_form</field>
+        <field name="model">purchase.order.import.variants</field>
+        <field name="arch" type="xml">
+            <form string="Import Purchase Order">
+                <header>
+                    <button name="action_import" type="object"
+                            effect="{'message':'Se crearon con exito!','fadeout':'medium'}"
+                            string="Create Orders" attrs="{'invisible':[('include_variants','=',True)]}"
+                    />
+                    <button name="action_import_product" type="object"
+                             effect="{'message':'Se crearon con exito!','fadeout':'medium'}"
+                            string="Create Orders With Products" attrs="{'invisible':[('include_variants','=',False)]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-circle" type="object"
+                                attrs="{'invisible':[('purchase_ids','=',0)]}" name="open_purchase_views">
+                            <field name="count_purchases" string="Compras" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="name" invisible="1"/>
+                        <field name="excel_file" filename="excel_filename"/>
+                        <field name="excel_filename" invisible="1"/>
+                        <field name="include_title"/>
+                        <field name="include_variants"/>
+                        <field name="purchase_ids" readonly="1" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="purchase_order_import_variants_action" model="ir.actions.act_window">
+        <field name="name">Purchase Import Variants Action</field>
+        <field name="res_model">purchase.order.import.variants</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="purchase_order_import_variants_form"/>
+    </record>
+
+</odoo>
